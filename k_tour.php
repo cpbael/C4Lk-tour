@@ -13,7 +13,7 @@
 		</header>
 		<section id="posts">
 			<article>
-				<form action="solver.php" method="POST">
+				<form action="solver.php" method="POST" enctype="multipart/form-data">
 					<p>Enter a positive number:</p>
 					<!--input type="number" name="size" min="4" value='4' /-->
 					<!--input type="file" id="fileinput" /-->

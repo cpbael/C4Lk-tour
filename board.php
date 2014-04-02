@@ -38,5 +38,17 @@ class Board {
 		}
 	}
 
+	public function getKnightById() {
+		return $this->knight->id;
+	}
+
+	public function getKnightByX() {
+		return $this->knight->x;
+	}
+
+	public function getKnightByY() {
+		return $this->knight->y;
+	}
+
 }
 ?>

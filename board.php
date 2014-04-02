@@ -21,6 +21,7 @@ class Board {
 				$tile->parent = null;
 				$tile->x = $row;
 				$tile->y = $column;
+				$tile->visited = false;
 
 				if ($input[$row][$column] == 0) {
 					$tile->is_empty = true;
@@ -38,15 +39,27 @@ class Board {
 		}
 	}
 
-	public function getKnightById() {
+	public function getKnightId() {
 		return $this->knight->id;
 	}
 
-	public function getKnightByX() {
+	public function getTileById($id) {
+		$row = ($id-1) / $this->size;
+		$column = ($id-1) % $this->size;
+		return $this->tiles[$row][$column];
+	}
+
+	public function setVisited($id,$boolean){
+		$row = ($id-1) / $this->size;
+		$column = ($id-1) % $this->size;
+		$this->tiles[$row][$column]->visited = $boolean;
+	}
+
+	public function getKnightX() {
 		return $this->knight->x;
 	}
 
-	public function getKnightByY() {
+	public function getKnightY() {
 		return $this->knight->y;
 	}
 

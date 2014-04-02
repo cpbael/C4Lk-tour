@@ -9,10 +9,7 @@ class Tile {
 	public $x;
 	public $y;
 
-	function __construct() {
-		$this->visited = false;
-	}
-
+	
 }
 
 ?>

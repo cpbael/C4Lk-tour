@@ -1,6 +1,9 @@
 <?php
 include("board.php");
 
+	set_time_limit(0);
+
+	/*START OF FILE READING*
 set_time_limit(0);
 
 /*START OF FILE READING*/
@@ -146,4 +149,5 @@ for($case=0; $case<$cases;$case++){
 	echo "</pre>";
 }//foreach case
 /*OPTIONS AND NOPTS*/
+
 ?>

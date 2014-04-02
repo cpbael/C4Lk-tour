@@ -106,21 +106,25 @@ for($case=0; $case<$cases;$case++){
 
 				
 			}else{
-				echo "nopts[{$move}]:{$nopts[$move]}<br/>";
+				//echo "nopts[{$move}]:{$nopts[$move]}<br/>";
 				foreach ($children[$case][$options[$move-1][$nopts[$move-1]]] as $key => $child) {
 					if(!$board->getTileById($child)->visited and $board->getTileById($child)->is_empty){
 						$board->setVisited($child,true);
 						$options[$move][++$nopts[$move]] = $child;
 					}
 				}
-				echo "OPTIONS:<pre>";
-				print_r($options);
-				echo "</pre>";
+				foreach ($options as $row) {
+					foreach ($row as $col) {
+						echo $col.",";
+					}echo "<br/>";
+				}
+				echo "<hr/>";
 
 			}//else:solution not found
 
 		}//end if: nopts[move]>0
 		else {
+			echo "<h3>backtrack</h3>";
 			$nopts[--$move]--;
 		}
 

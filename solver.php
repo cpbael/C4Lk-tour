@@ -1,36 +1,8 @@
 <?php
 
+	set_time_limit(0);
 
-<<<<<<< HEAD
-	function generateSol(){
-		if (file_exists("upload/" . $_FILES["input"]["name"]))
-	      {
-	    	unlink("upload/".$_FILES['input']['name']); //remove the file
-	      }
-	    
-	  move_uploaded_file($_FILES["input"]["tmp_name"],
-	  "upload/" . $_FILES["input"]["name"]); 
-
-
-	  	$fh = fopen('upload/'. $_FILES["input"]["name"],'r') or exit("Unable to open file!");;
-	  	$case=(int)fgets($fh);
-	  	echo $case;
-	  	$board;
-	  	$i=0;
-		for ($i=0; $i <$case ; $i++) { 
-			$size=(int)fgets($fh);
-			for($j=0;$j<$size;$j++){
-				$board[$i][$j]=array_map('intval',explode(" ",fgets($fh)));
-			}
-		}
-		fclose($fh);  
-
-		var_dump($board); 
-	}
-=======
-set_time_limit(0);
-
-/*START OF FILE READING*/
+	/*START OF FILE READING*/
 	if (file_exists("upload/" . $_FILES["input"]["name"]))
       {
     	unlink("upload/".$_FILES['input']['name']); //remove the file
@@ -139,6 +111,5 @@ for($case=0; $case<$cases;$case++){
 }//foreach case
 /*OPTIONS AND NOPTS*/
 
->>>>>>> 0a064dca4a6a00ed5c3ab4c4e08961e9a88ec2ba
 
 ?>

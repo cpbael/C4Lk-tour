@@ -27,7 +27,7 @@ set_time_limit(0);
 	}
 	fclose($fh);  
 	//echo sizeof($board[0]);
-	//var_dump($board); 
+	var_dump($input); 
 /*END OF FILE READING*/
 
 /*GENERATE CHILDREN FOR EACH TILE*/
@@ -80,10 +80,10 @@ for($i=0;$i<$cases;$i++){
 for($case=0; $case<$cases;$case++){
 	
 	$board = new Board($input[$case],sizeof($input[$case]));
-	/*echo "<pre>";
+	echo "<pre>";
 	print_r($board);
 	echo "</pre>";
-	echo $board->getKnightId();*/
+	echo $board->getKnightId();
 	// echo "KNIGHT:".print_r($board.getKnightById());
 	$start=$move=0;
 
@@ -110,11 +110,21 @@ for($case=0; $case<$cases;$case++){
 				
 			}else{
 				//echo "nopts[{$move}]:{$nopts[$move]}<br/>";
+				$has_children = false;
+				$board->setVisited($options[$move-1][$nopts[$move-1]],true);
 				foreach ($children[$case][$options[$move-1][$nopts[$move-1]]] as $key => $child) {
 					if(!$board->getTileById($child)->visited and $board->getTileById($child)->is_empty){
-						$board->setVisited($child,true);
 						$options[$move][++$nopts[$move]] = $child;
+						$has_children=true;
 					}
+				}
+
+				if(!$has_children){
+					$board->setVisited($options[$move-1][$nopts[$move-1]],false);
+					$nopts[--$move]--;
+					/*if($nopts[$move-1]==0){
+						$nopts[--$move]--;
+					}*/
 				}
 				foreach ($options as $row) {
 					foreach ($row as $col) {
@@ -127,8 +137,10 @@ for($case=0; $case<$cases;$case++){
 
 		}//end if: nopts[move]>0
 		else {
-			echo "<h3>backtrack</h3>";
+			echo "<h3>backtrack. remove: {$options[$move][$nopts[$move]]}</h3>";
+			$board->setVisited($options[$move][1],false);
 			$nopts[--$move]--;
+			
 		}
 
 	}//end while

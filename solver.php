@@ -1,5 +1,8 @@
 <?php
 
+
+set_time_limit(0);
+
 /*START OF FILE READING*/
 	if (file_exists("upload/" . $_FILES["input"]["name"]))
       {
@@ -60,8 +63,12 @@ for($i=0;$i<$cases;$i++){
 			if( ($row + 1) <= $size and ($column + 2) <= $size){ //middle lower right
 				$children[$i][$j][] =  (($row+1)*$size)+ ($column+3);
 			}
-	}
-}
+
+	//var_dump($board);
+
+/*END OF FILE READING*/
+
+
 
 var_dump($children);
 
@@ -79,11 +86,12 @@ for($case=0; $case<$cases;$case++){
 
 		echo "nopts[{$move}]:{$nopts[$move]}<br/>";
 		if($nopts[$move] > 0){	//populate possible moves
-			
+
 			$nopts[++$move]=0;
 
 			if($move > sizeof($board[0])){ //solution found
 				for ($i=1; $i < $move ; $i++) { 
+
 					$solution[][$i] = $options[$i][$nopts[$i]];
 				}
 			}else{

@@ -1,10 +1,15 @@
 <?php
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 set_time_limit(0);
 
 >>>>>>> New index.php; added board class
+=======
+set_time_limit(0);
+
+>>>>>>> master
 /*START OF FILE READING*/
 	if (file_exists("upload/" . $_FILES["input"]["name"]))
       {
@@ -28,15 +33,21 @@ set_time_limit(0);
 	fclose($fh);  
 	//echo sizeof($board[0]);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	var_dump($board); 
 =======
 	//var_dump($board);
 
 >>>>>>> New index.php; added board class
+=======
+	//var_dump($board);
+
+>>>>>>> master
 /*END OF FILE READING*/
 
 /*GENERATE CHILDREN FOR EACH TILE*/
 for($i=0;$i<$case;$i++){
+<<<<<<< HEAD
 <<<<<<< HEAD
 	for ($j=0; $j < sizeof($board[$i]) ; $j++) { 
 		$children[$i][$]
@@ -44,6 +55,10 @@ for($i=0;$i<$case;$i++){
 	for ($j=0; $j < sizeof($board[$i]); $j++) { 
 		//$children[$i][$j];
 >>>>>>> New index.php; added board class
+=======
+	for ($j=0; $j < sizeof($board[$i]); $j++) { 
+		//$children[$i][$j];
+>>>>>>> master
 	}
 }
 
@@ -57,14 +72,19 @@ for($i=0;$i<$case;$i++){
 
 		if($nopts[$move] > 0){	//populate possible moves
 <<<<<<< HEAD
+<<<<<<< HEAD
 			
 =======
 
 >>>>>>> New index.php; added board class
+=======
+
+>>>>>>> master
 			$nopts[++$move]=0;
 
 			if($move > sizeof($board[0])){ //solution found
 				for ($i=1; $i < $move ; $i++) { 
+<<<<<<< HEAD
 <<<<<<< HEAD
 					$solution[][$i] = $options[$i][$nopts[$i]];
 				}
@@ -73,13 +93,18 @@ for($i=0;$i<$case;$i++){
 					# code...
 				}
 =======
+=======
+>>>>>>> master
 					//$solution[][$i] = $options[$i][$nopts[$i]];
 				}
 			}else{
 				//for ($candidate=0; $i < ; $i++) { 
 					# code...
 				//}
+<<<<<<< HEAD
 >>>>>>> New index.php; added board class
+=======
+>>>>>>> master
 			}
 
 		}

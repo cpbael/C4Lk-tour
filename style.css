@@ -63,3 +63,26 @@ footer#page_footer{
   text-align: center;
   color:#02182b;
 }
+
+#board {
+  float: left;
+  width: fixed;
+  height: fixed;
+  border: 10px solid #888;
+}
+.square {
+  float: left;
+  width: 60px;
+  height: 60px;
+  color: #888;
+}
+.black {
+  background-color: black;
+}
+.white {
+  background-color: white;
+}
+
+.red {
+  background-color: red;
+}

@@ -21,7 +21,11 @@ require_once("board.php");
 			$input[$i][$j] = array_map('intval', explode(" ",fgets($fh)));
 		}
 	}
+<<<<<<< HEAD
 
+=======
+	fclose($fh);
+>>>>>>> aae56706689f96279acbab6ece1a872eccb97db5
 	fclose($fh);  
 	var_dump($input); 
 /*END OF FILE READING*/
@@ -77,6 +81,10 @@ for($case = 0; $case < $cases; $case++){
 	echo $board->getKnightId();
 	// echo "KNIGHT:".print_r($board.getKnightById());
 	$start=$move=0;
+<<<<<<< HEAD
+=======
+
+>>>>>>> aae56706689f96279acbab6ece1a872eccb97db5
 
 	$nopts[$start] = 1;
 	$options[1][1] = 1;
@@ -97,6 +105,10 @@ for($case = 0; $case < $cases; $case++){
 					echo $options[$i][$nopts[$i]].",";
 				}	
 			}else{
+<<<<<<< HEAD
+=======
+
+>>>>>>> aae56706689f96279acbab6ece1a872eccb97db5
 				foreach ($children[$case][$options[$move-1][$nopts[$move-1]]] as $key => $child) {
 					if(!$board->getTileById($child)->visited and $board->getTileById($child)->is_empty){
 						$board->setVisited($child, true);
@@ -106,6 +118,10 @@ for($case = 0; $case < $cases; $case++){
 				$board->setVisited($options[$move-1][$nopts[$move-1]],true);
 				foreach ($children[$case][$options[$move-1][$nopts[$move-1]]] as $key => $child) {
 					if(!$board->getTileById($child)->visited and $board->getTileById($child)->is_empty){
+<<<<<<< HEAD
+=======
+
+>>>>>>> aae56706689f96279acbab6ece1a872eccb97db5
 						$options[$move][++$nopts[$move]] = $child;
 						$has_children=true;
 					}

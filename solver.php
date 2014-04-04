@@ -22,7 +22,13 @@ require_once("board.php");
 			$input[$i][$j] = array_map('intval', explode(" ",fgets($fh)));
 		}
 	}
+<<<<<<< HEAD
 	fclose($fh);
+=======
+	fclose($fh);  
+	//echo sizeof($board[0]);
+	var_dump($input); 
+>>>>>>> 841c0bde12cbdd1ffc6cedae1a995c7694f0cc10
 /*END OF FILE READING*/
 
 /*GENERATE CHILDREN FOR EACH TILE*/
@@ -66,8 +72,18 @@ for($i = 0; $i < $cases; $i++){
 /*OPTIONS AND NOPTS*/
 for($case = 0; $case < $cases; $case++){
 	
+<<<<<<< HEAD
 	$board = new Board($input[$case], sizeof($input[$case]));
 	$start = $move = 0;
+=======
+	$board = new Board($input[$case],sizeof($input[$case]));
+	echo "<pre>";
+	print_r($board);
+	echo "</pre>";
+	echo $board->getKnightId();
+	// echo "KNIGHT:".print_r($board.getKnightById());
+	$start=$move=0;
+>>>>>>> 841c0bde12cbdd1ffc6cedae1a995c7694f0cc10
 
 	$nopts[$start] = 1;
 	$options[1][1] = 1;
@@ -88,11 +104,28 @@ for($case = 0; $case < $cases; $case++){
 					echo $options[$i][$nopts[$i]].",";
 				}	
 			}else{
+<<<<<<< HEAD
 				foreach ($children[$case][$options[$move-1][$nopts[$move-1]]] as $key => $child) {
 					if(!$board->getTileById($child)->visited and $board->getTileById($child)->is_empty){
 						$board->setVisited($child, true);
+=======
+				//echo "nopts[{$move}]:{$nopts[$move]}<br/>";
+				$has_children = false;
+				$board->setVisited($options[$move-1][$nopts[$move-1]],true);
+				foreach ($children[$case][$options[$move-1][$nopts[$move-1]]] as $key => $child) {
+					if(!$board->getTileById($child)->visited and $board->getTileById($child)->is_empty){
+>>>>>>> 841c0bde12cbdd1ffc6cedae1a995c7694f0cc10
 						$options[$move][++$nopts[$move]] = $child;
+						$has_children=true;
 					}
+				}
+
+				if(!$has_children){
+					$board->setVisited($options[$move-1][$nopts[$move-1]],false);
+					$nopts[--$move]--;
+					/*if($nopts[$move-1]==0){
+						$nopts[--$move]--;
+					}*/
 				}
 				foreach ($options as $row) {
 					foreach ($row as $col) {
@@ -106,8 +139,10 @@ for($case = 0; $case < $cases; $case++){
 
 		}//end if: nopts[move]>0
 		else {
-			echo "<h3>backtrack</h3>";
+			echo "<h3>backtrack. remove: {$options[$move][$nopts[$move]]}</h3>";
+			$board->setVisited($options[$move][1],false);
 			$nopts[--$move]--;
+			
 		}
 
 	}//end while

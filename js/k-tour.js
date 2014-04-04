@@ -57,12 +57,6 @@ function gen_table(){
 
 	var chessboard = new Array();
 
-
-
-  	
-	
-
-
 	var stage= document.getElementById('stage');
 	var n= document.getElementsByName('size')[0].value;
 	//var mid= Math.round(n/2);
@@ -84,11 +78,22 @@ this.parent=parent;
 this.visited=visited;
 }
 
-function printNext(solution){
-	console.log(solution);
-	var N = 5;
+function loadjscssfile(filename, filetype){
+ 
+  var fileref=document.createElement("link")
+  fileref.setAttribute("rel", "stylesheet")
+  fileref.setAttribute("type", "text/css")
+  fileref.setAttribute("href", filename)
+
+}
+
+
+
+function printSol(solution){
+	loadjscssfile("style.css", "css") ////dynamically load and add this .css file
+	var N=5;
 	var id=1;
-	var buff="<table id='finalTable' border='2'>";
+	var buff="<table id='board'>";
 	for(var i=0; i<N;i++){
 		buff+="<tr id="+i+">";
 		
@@ -99,10 +104,43 @@ function printNext(solution){
 		buff+="</tr>";
 	}
 	buff+="</tr></table>";
+	stage.innerHTML=(buff);
+
+	solArrayLength = solution.length;
+
+	var k=0;
+	function print() {
+	//for(var k=0;k<solArrayLength;k++){
+		setTimeout(function() {
+			var id = solution[k].id;
+			var row = parseInt((id-1)/N);
+			var Row = document.getElementById(row);	
+			var Cells = Row.getElementsByTagName("td");
+			var column = (parseInt(id-1)%N);
+			Cells[column].style.backgroundColor = "Black";
+			k++; 
+			if (k < solArrayLength){
+				print();
+			}
+		}, 1000);
+	};
+	print();
 	
-	console.log("heey");
+		
+	/*
 
-	document.getElementById("board").innerHTML = buff;
+	var buff="<table id='exerTable'>";
+	for(var i=0; i<1;i++){
+		buff+="<tr>";
+		for(var j=0;j<25;j++)
+			buff+="<td id='exerTable'>("+solution[j].id+")</td>";
+		buff+="</tr>";
+	}
+	buff+="</tr></table>";
+	stage.innerHTML=(buff);
 
+	//console.log(solution[0][5].id);
+	//console.log("hello");
+	*/
 }
 

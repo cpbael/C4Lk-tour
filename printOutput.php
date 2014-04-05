@@ -59,37 +59,39 @@
 
 	}
 
-	$tile1 = new tile(1, null, 0, 0, 0, 0);
-	$tile2 = new tile(2, 11, 0, 1, 0, 0);
-	$tile3 = new tile(3, 12, 0, 2, 0, 0);
-	$tile4 = new tile(4, 7, 0, 3, 0, 0);
-	$tile5 = new tile(5, 8, 0, 4, 0, 0);
-	$tile6 = new tile(6, 17, 1, 0, 0, 0);
-	$tile7 = new tile(7, 16, 1, 1, 0, 0);
-	$tile8 = new tile(8, 1, 1, 2, 0, 0);
-	$tile9 = new tile(9, 2, 1, 3, 0, 0);
-	$tile10 = new tile(10, 3, 1, 4, 0, 0);
-	$tile11 = new tile(11, 22, 2, 0, 0, 0);
-	$tile12 = new tile(12, 21, 2, 1, 0, 0);
-	$tile13 = new tile(13, 6, 2, 2, 0, 0);
-	$tile14 = new tile(14, 5, 2, 3, 0, 0);
-	$tile15 = new tile(15, 4, 2, 4, 0, 0);
-	$tile16 = new tile(16, 23, 3, 0, 0, 0);
-	$tile17 = new tile(17, 24, 3, 1, 0, 0);
-	$tile18 = new tile(18, 25, 3, 2, 0, 0);
-	$tile19 = new tile(19, 10, 3, 3, 0, 0);
-	$tile20 = new tile(20, 9, 3, 4, 0, 0);
-	$tile21 = new tile(21, 18, 4, 0, 0, 0);
-	$tile22 = new tile(22, 19, 4, 1, 0, 0);
-	$tile23 = new tile(23, 20, 4, 2, 0, 0);
-	$tile24 = new tile(24, 15, 4, 3, 0, 0);
-	$tile25 = new tile(25, 14, 4, 4, 0, 0);
+	$tile1 = new tile(1, null, 0, 0, true, 0);
+	$tile2 = new tile(2, 11, 0, 1, true, 0);
+	$tile3 = new tile(3, 12, 0, 2, false, 0);
+	$tile4 = new tile(4, 7, 0, 3, true, 0);
+	$tile5 = new tile(5, 8, 0, 4, true, 0);
+	$tile6 = new tile(6, 17, 1, 0, false, 0);
+	$tile7 = new tile(7, 16, 1, 1, true, 0);
+	$tile8 = new tile(8, 1, 1, 2, true, 0);
+	$tile9 = new tile(9, 2, 1, 3, true, 0);
+	$tile10 = new tile(10, 3, 1, 4, true, 0);
+	$tile11 = new tile(11, 22, 2, 0, true, 0);
+	$tile12 = new tile(12, 21, 2, 1, true, 0);
+	$tile13 = new tile(13, 6, 2, 2, true, 0);
+	$tile14 = new tile(14, 5, 2, 3, true, 0);
+	$tile15 = new tile(15, 4, 2, 4, true, 0);
+	$tile16 = new tile(16, 23, 3, 0, true, 0);
+	$tile17 = new tile(17, 24, 3, 1, true, 0);
+	$tile18 = new tile(18, 25, 3, 2, true, 0);
+	$tile19 = new tile(19, 10, 3, 3, true, 0);
+	$tile20 = new tile(20, 9, 3, 4, true, 0);
+	$tile21 = new tile(21, 18, 4, 0, true, 0);
+	$tile22 = new tile(22, 19, 4, 1, true, 0);
+	$tile23 = new tile(23, 20, 4, 2, true, 0);
+	$tile24 = new tile(24, 15, 4, 3, true, 0);
+	$tile25 = new tile(25, 14, 4, 4, true, 0);
 
 	//Print initial table
 	$solutions = array(
+			array($tile1,$tile8,$tile5,$tile14,$tile25,$tile18,$tile21,$tile12,$tile10,$tile19,$tile22,$tile11,$tile2,$tile9,$tile20,$tile23,$tile16,$tile7,$tile4,$tile15,$tile24,$tile17,$tile13),
+			array($tile8,$tile5,$tile1,$tile14,$tile25,$tile18,$tile21,$tile12,$tile3,$tile10,$tile19,$tile22,$tile11,$tile2,$tile9,$tile20,$tile23,$tile16,$tile7,$tile4,$tile15,$tile24,$tile17,$tile6,$tile13),
 			array($tile1,$tile8,$tile5,$tile14,$tile25,$tile18,$tile21,$tile12,$tile3,$tile10,$tile19,$tile22,$tile11,$tile2,$tile9,$tile20,$tile23,$tile16,$tile7,$tile4,$tile15,$tile24,$tile17,$tile6,$tile13),
 			array($tile8,$tile5,$tile1,$tile14,$tile25,$tile18,$tile21,$tile12,$tile3,$tile10,$tile19,$tile22,$tile11,$tile2,$tile9,$tile20,$tile23,$tile16,$tile7,$tile4,$tile15,$tile24,$tile17,$tile6,$tile13),
-			array($tile1,$tile8,$tile5,$tile14,$tile25,$tile18,$tile21,$tile12,$tile3,$tile10,$tile19,$tile22,$tile11,$tile2,$tile9,$tile20,$tile23,$tile16,$tile7,$tile4,$tile15,$tile24,$tile17,$tile6,$tile13)
+			array($tile8,$tile5,$tile1,$tile14,$tile25,$tile18,$tile21,$tile12,$tile3,$tile10,$tile19,$tile22,$tile11,$tile2,$tile9,$tile20,$tile23,$tile16,$tile7,$tile4,$tile15,$tile24,$tile17,$tile6,$tile13)
 		);
 	//$solutions = array();
 
@@ -121,9 +123,7 @@
     <div class="container">
       <div class="header">
         <ul class="nav nav-pills pull-right">
-          <li class="active"><a href="/">Home</a></li>
-          <li><a href="#">About Knight's Tour</a></li>
-          <li><a href="#">Developers</a></li>
+          <li class="active"><a href="index.php">Home</a></li>
         </ul>
         <h3 class="text-muted">Knight's Tour</h3>
       </div>
@@ -160,7 +160,7 @@
 	      </div>
          
          <div id="stage">
-          <p id="outputLabel"> </p>
+          <!--<p id="outputLabel"> </p>-->
         </div>
       </div>
 

@@ -21,9 +21,7 @@
     <div class="container">
       <div class="header">
         <ul class="nav nav-pills pull-right">
-          <li class="active"><a href="/">Home</a></li>
-          <li><a href="#">About Knight's Tour</a></li>
-          <li><a href="#">Developers</a></li>
+          <li class="active"><a href="index.php">Home</a></li>
         </ul>
         <h3 class="text-muted">Knight's Tour</h3>
       </div>
@@ -39,7 +37,7 @@
         </form>
 
         <div id="stage">
-          <p id="outputLabel"> Output: </p>
+          <p id="outputLabel"></p>
         </div>
       </div>
 

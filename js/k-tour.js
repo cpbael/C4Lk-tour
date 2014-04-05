@@ -10,10 +10,10 @@ function printSol(solution, dimension){
 			
 			for(var j=0;j<dimension;j++){
 				if((y+j)%2==0){
-					buff+="<td style='background-color:white;'></td>";
+					buff+="<td style='background-color:white; height:60px;'></td>";
 					id++;
 				}else{
-					buff+="<td style='background-color:black;'></td>";
+					buff+="<td style='background-color:black; height:60px;'></td>";
 					id++;
 				}
 			}
@@ -28,11 +28,11 @@ function printSol(solution, dimension){
 		document.getElementById('board').style.tableLayout="fixed";
 		solArrayLength = solution.length;
 
-		/*var img = document.createElement('img');
-    	img.src = "knight.jpg";
-    	img.style.width = '50px';
+		var img = document.createElement('img');
+    	img.src = "knight.png";
+    	img.style.width = '100%';
     	img.style.height = '50px';
-    	*/
+    	
 		var k=0;
 		function print() {
 		setTimeout(function() {
@@ -43,8 +43,8 @@ function printSol(solution, dimension){
 				var Cells = Row.getElementsByTagName("td");
 				var column = (parseInt(id-1)%dimension);
 				//Cells[column].style.overflow = 'auto';
-				Cells[column].style.backgroundColor = "Red";
-				//Cells[column].appendChild(img)
+				Cells[column].style.backgroundColor = "rgb(238,169,184)";
+				Cells[column].appendChild(img);
 				k++; 
 				if (k < solArrayLength){
 					print();

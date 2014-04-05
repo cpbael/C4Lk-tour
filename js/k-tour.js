@@ -23,8 +23,8 @@ function printSol(solution, dimension){
 		buff+="</tr></table>";
 		stage.innerHTML=(buff);
 
-		document.getElementById('board').style.width = '400px';
-		document.getElementById('board').style.height = '400px';
+		document.getElementById('board').style.width = '575px';
+		document.getElementById('board').style.height = '500px';
 		document.getElementById('board').style.tableLayout="fixed";
 		solArrayLength = solution.length;
 

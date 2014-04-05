@@ -5,12 +5,14 @@ require_once('tile.php');
 class Board {
 	
 	public $size;
+	//public $max=1;
 	public $tiles;
 	public $knight;
 
 	function __construct($input, $boardSize) {
 		$this->size = $boardSize;
 		$this->tiles = array();
+		//$this->$max = 1;
 
 		$counter = 1;
 
@@ -25,6 +27,7 @@ class Board {
 
 				if ($input[$row][$column] == 0) {
 					$tile->is_empty = true;
+					//$this->$max = $this->max +1;
 				}
 				else {
 					$tile->is_empty = false;
@@ -37,6 +40,18 @@ class Board {
 				}
 			}
 		}
+	}
+
+	public function getMaxMoves(){
+		$max = 1;
+		foreach ($this->tiles as $key => $row) {
+			foreach ($row as $k => $col) {
+				if($col->is_empty)
+					$max++;
+			}
+		}
+
+		return $max;
 	}
 
 	public function getKnightId() {

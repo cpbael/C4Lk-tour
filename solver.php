@@ -9,6 +9,7 @@ set_time_limit(0);
 /*START OF FILE READING*/
 	if (file_exists("upload/" . $_FILES["input"]["name"]))
       {
+      	chmod("upload/".$_FILES['input']['name'], 777);
     	unlink("upload/".$_FILES['input']['name']); //remove the file
       }
     
@@ -16,7 +17,7 @@ set_time_limit(0);
   	"upload/" . $_FILES["input"]["name"]); 
 
 
-  	$fh = fopen('upload/'. $_FILES["input"]["name"],'r') or exit("Unable to open file!");;
+  	$fh = fopen('upload/'. $_FILES["input"]["name"],'r') or exit("Unable to open file!");
   	$cases=(int)fgets($fh);
   	$i=0;
 	for ($i=0; $i <$cases ; $i++) { 
@@ -80,10 +81,11 @@ for($i=0;$i<$cases;$i++){
 for($case=0; $case<$cases;$case++){
 	
 	$board = new Board($input[$case],sizeof($input[$case]));
-	echo "<pre>";
+	//echo "<b>".$board->getMaxMoves()."</b>";
+	/*echo "<pre>";
 	print_r($board);
 	echo "</pre>";
-	echo $board->getKnightId();
+	echo $board->getKnightId();*/
 	// echo "KNIGHT:".print_r($board.getKnightById());
 	$start=$move=0;
 
@@ -94,12 +96,12 @@ for($case=0; $case<$cases;$case++){
 
 	while($nopts[$start] > 0){
 
-		echo "nopts[{$move}]:{$nopts[$move]}<br/>";
+		echo "nopts[{$move}]:{$nopts[$move]}, <br/>";
 		if($nopts[$move] > 0){	//populate possible moves
-
 			$nopts[++$move]=0;
+			unset($options[$nopts[$move]]);
 
-			if($move > $board->size * $board->size){ //solution found
+			if($move > $board->getMaxMoves()){ //solution found
 				echo "<h2>SOLUTION FOUND</h2>";
 				for ($i=1; $i < $move ; $i++) { 
 
@@ -109,7 +111,7 @@ for($case=0; $case<$cases;$case++){
 
 				
 			}else{
-				//echo "nopts[{$move}]:{$nopts[$move]}<br/>";
+				echo "gen child of options[".($move-1)."][".$nopts[$move-1]."]:".$options[$move-1][$nopts[$move-1]]."<br/>";
 				$has_children = false;
 				$board->setVisited($options[$move-1][$nopts[$move-1]],true);
 				foreach ($children[$case][$options[$move-1][$nopts[$move-1]]] as $key => $child) {
@@ -121,23 +123,34 @@ for($case=0; $case<$cases;$case++){
 
 				if(!$has_children){
 					$board->setVisited($options[$move-1][$nopts[$move-1]],false);
+					echo "<h3>no child, backtrack. remove: ".$options[$move-1][$nopts[$move-1]]."</h3>";
+					//unset($options[$move-1][$nopts[$move-1]]);
 					$nopts[--$move]--;
 					/*if($nopts[$move-1]==0){
 						$nopts[--$move]--;
 					}*/
 				}
-				foreach ($options as $row) {
+				
+				foreach ($options as $l=>$row) {
+					echo $l." : ";
 					foreach ($row as $col) {
 						echo $col.",";
 					}echo "<br/>";
+
 				}
+				echo "<h3>";
+				foreach ($options as $l => $row) {
+					if($nopts[$l]>0)
+						echo $row[$nopts[$l]]. " , ";
+				}
+				echo "</h3>";
 				echo "<hr/>";
 
 			}//else:solution not found
 
 		}//end if: nopts[move]>0
 		else {
-			echo "<h3>backtrack. remove: {$options[$move][$nopts[$move]]}</h3>";
+			echo "<h3> backtrack</h3>";//" remove: {$options[$move][$nopts[$move]]}</h3>";
 			$board->setVisited($options[$move][1],false);
 			$nopts[--$move]--;
 			
@@ -147,6 +160,12 @@ for($case=0; $case<$cases;$case++){
 	echo "OPTIONS:<pre>";
 	print_r($options);
 	echo "</pre>";
+	echo "NOPTIONS:<pre>";
+	print_r($nopts);
+	echo "</pre>";
+	for ($i=0; $i < sizeof($options) ; $i++) { 
+		echo $options[$i][$nopts[$i]];"<br/>";
+	}
 }//foreach case
 /*OPTIONS AND NOPTS*/
 

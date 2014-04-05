@@ -34,7 +34,7 @@
             <input type="file" title="Choose Input File" data-filename-placement="inside" name="input" id="input">
           </div>
           <div class="form-group">
-            <input type="submit" name="generate" value="Generate Tour" class="btn btn-primary" disabled>
+            <input type="submit" name="generate" value="Generate Tour" class="btn btn-primary" >
           </div>
         </form>
 

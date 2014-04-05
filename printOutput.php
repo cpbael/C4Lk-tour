@@ -88,13 +88,14 @@
 	//Print initial table
 	$solutions = array(
 			array($tile1,$tile8,$tile5,$tile14,$tile25,$tile18,$tile21,$tile12,$tile3,$tile10,$tile19,$tile22,$tile11,$tile2,$tile9,$tile20,$tile23,$tile16,$tile7,$tile4,$tile15,$tile24,$tile17,$tile6,$tile13),
-			array($tile1,$tile8,$tile5,$tile14,$tile25,$tile18,$tile21,$tile12,$tile3,$tile10,$tile19,$tile22,$tile11,$tile2,$tile9,$tile20,$tile23,$tile16,$tile7,$tile4,$tile15,$tile24,$tile17,$tile6,$tile13),
+			array($tile8,$tile5,$tile1,$tile14,$tile25,$tile18,$tile21,$tile12,$tile3,$tile10,$tile19,$tile22,$tile11,$tile2,$tile9,$tile20,$tile23,$tile16,$tile7,$tile4,$tile15,$tile24,$tile17,$tile6,$tile13),
 			array($tile1,$tile8,$tile5,$tile14,$tile25,$tile18,$tile21,$tile12,$tile3,$tile10,$tile19,$tile22,$tile11,$tile2,$tile9,$tile20,$tile23,$tile16,$tile7,$tile4,$tile15,$tile24,$tile17,$tile6,$tile13)
 		);
+	//$solutions = array();
 
-	$solution = array($tile1,$tile8,$tile5,$tile14,$tile25,$tile18,$tile21,$tile12,$tile3,$tile10,$tile19,$tile22,$tile11,$tile2,$tile9,$tile20,$tile23,$tile16,$tile7,$tile4,$tile15,$tile24,$tile17,$tile6,$tile13);
+	global $dimension;
 	$dimension = 5;
-	//$test = array('red'=>'apple', 'yellow'=>'banana', 'orange'=>'orange', 'peach'=>'peach')
+	$solution = null;
 ?>
 
 <!DOCTYPE html>
@@ -130,15 +131,36 @@
 	 <div class="jumbotron">
         
 	      <div class="form-group">
-	      	<div class="dropdown">
-          		<select id="SolutionList"></select>
-          </div>
-	        <input type="button" onclick='printSol(<?php echo json_encode($solution)?>,<?php echo json_encode($dimension)?>)' value="Print Solution" class="btn btn-primary" />
-	      </div>
-          
 
-        <div id="stage">
-          <p id="outputLabel"> Output: </p>
+	      	<form name ="chooseSolution" Method ="POST" ACTION = "printOutput.php">
+	      	 <?php 
+		    	if(count($solutions) > 0){?>
+		    	
+			  	<?php echo "There were " . count($solutions) . " solutions generated. Enter the solution number that you want to print. </br></br>";
+			  		if(isset($_POST['submit'])){
+			      		$solnum = $_POST['solutionnumber'];
+			      		for($i=0;$i<count($solutions);$i++){
+			      			if($i+1 == $solnum){
+			      				$solution = $solutions[$i];
+			      				break;
+			      			}
+						}
+					}
+				}?>
+				<?php if(count($solutions)==0){
+					echo "There were no solution generated. </br></br>";
+				}
+		    ?>
+	      	<INPUT TYPE = 'Text' NAME = 'solutionnumber'>
+		    <INPUT TYPE = "Submit" Name = "submit" VALUE = "Submit"> </br></br>
+		    </form>
+
+	         <input type="button" onclick='printSol(<?php echo json_encode($solution) ?>,<?php echo json_encode($dimension) ?>)' value="Print Solution" class="btn btn-primary" id="printbtn"/>
+	      	<script type="text/javascript">document.getElementById("printbtn").disabled=false; </script>
+	      </div>
+         
+         <div id="stage">
+          <p id="outputLabel"> </p>
         </div>
       </div>
 

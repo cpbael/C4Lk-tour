@@ -1,87 +1,7 @@
-/*	
-*/
-
-$(document).ready(
-    function(){
-        $('input:file').change(
-            function(){
-                if ($(this).val()) {
-                    $('input:submit').attr('disabled',false); 
-                } 
-            }
-        );
-        $("#outputLabel").hide();
-    }
-);
-	
-var reader = new FileReader();
-
-function readText(that){
-
-	if(that.files && that.files[0]){
-		var reader = new FileReader();
-		reader.onload = function (e) {  
-			var input=e.target.result;
-		
-			//process text to show only lines with "@":				
-			input=input.split("\n");
-			var cases=input[0];
-			var output="cases:"+cases+"<br/>";
-			var last_size=0;
-			var initial_config = new Array();
-			for(var i=1;i<=cases;i++){
-				output = output + "<hr/>i:"+i+"<br/>";
-				for(var j=0;j<input[i+last_size];j++){
-					output += "j:"+j+":::_index:"+(i+last_size+1+j)+"<br/>";
-					initial_config[j]=input[i+last_size+1+j].split(" ");
-					output = output+initial_config[j];
-					//console.log(initial_config);
-					/*for(var k=0;k<input[i+last_size];k++){
-						output = output + initial_config[j][k] +"--";
-					}*/
-					output += "<br/>";
-				}
-				last_size=last_size+parseInt(input[i+last_size]);
-				output += "last size:"+last_size+"<hr/>";
-				
-				//console.log(initial_config);
-			}
-
-			document.getElementById('stage').innerHTML= output;
-		};//end onload()
-		reader.readAsText(that.files[0]);
-	}//end if html5 filelist support
-} 
-
-
 function printSol(solution, dimension){
-
-	
-	if(solution.length == 0){
-		alert("No Solution Found!");
+	if(solution == null){
+		alert("Invalid Input!");
 	}else{
-		
-		//document.getElementById('printBtn').disabled = true;
-
-		/*var sol = document.getElementById('SolutionList');
-		var opt = document.createElement('option');
-		for(var i = 0; i < solutionArray.length; i++) {
-			var opt = document.createElement('option');
-			opt.innerHTML = "Solution" + i;
-			opt.data-value = solutionArray[i];
-			sol.appendChild(opt);
-		}
-		console.log(solutionArray[0]);
-		var e = document.getElementById("SolutionList");
-		var solution = e.options[e.selectedIndex].value;	
-		console.log(solution);
-    	//var strSel = e.options[e.selectedIndex].value;
-    	//alert(strSel);*/
-		
-
-		//var solution = sol.options[sol.selectedIndex].value;
-		//console.log(solution[0].id);
-		//var N=5;
 		var id=1;
 		var buff="<table id='board' border='2'>";
 		var i=0;
@@ -128,12 +48,11 @@ function printSol(solution, dimension){
 				k++; 
 				if (k < solArrayLength){
 					print();
-				}
+				}else{alert('Printing Finished! :)');}
 			}, 1500);
 		};
 		print();
 	}
-		
 	
 }
 

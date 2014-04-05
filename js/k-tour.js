@@ -53,94 +53,87 @@ function readText(that){
 	}//end if html5 filelist support
 } 
 
-function gen_table(){
 
-	var chessboard = new Array();
+function printSol(solution, dimension){
 
-	var stage= document.getElementById('stage');
-	var n= document.getElementsByName('size')[0].value;
-	//var mid= Math.round(n/2);
-	var buff="<table id='exerTable'>";
-	for(var i=1; i<=n;i++){
-		buff+="<tr>";
-		for(var j=1;j<=n;j++)
-			buff+="<td id='exerTable'>"+i+","+j+"</td>";
-		buff+="</tr>";
-	}
-	buff+="</tr></table>";
-	stage.innerHTML=(buff);
-}
-
-function tile(id,parent,visited)
-{
-this.id=id;
-this.parent=parent;
-this.visited=visited;
-}
-
-function loadjscssfile(filename, filetype){
- 
-  var fileref=document.createElement("link")
-  fileref.setAttribute("rel", "stylesheet")
-  fileref.setAttribute("type", "text/css")
-  fileref.setAttribute("href", filename)
-
-}
-
-
-
-function printSol(solution){
-	loadjscssfile("style.css", "css") ////dynamically load and add this .css file
-	var N=5;
-	var id=1;
-	var buff="<table id='board'>";
-	for(var i=0; i<N;i++){
-		buff+="<tr id="+i+">";
-		
-		for(var j=0;j<N;j++){
-			buff+="<td>"+id+"</td>";
-			id++;
-		}
-		buff+="</tr>";
-	}
-	buff+="</tr></table>";
-	stage.innerHTML=(buff);
-
-	solArrayLength = solution.length;
-
-	var k=0;
-	function print() {
-	//for(var k=0;k<solArrayLength;k++){
-		setTimeout(function() {
-			var id = solution[k].id;
-			var row = parseInt((id-1)/N);
-			var Row = document.getElementById(row);	
-			var Cells = Row.getElementsByTagName("td");
-			var column = (parseInt(id-1)%N);
-			Cells[column].style.backgroundColor = "Black";
-			k++; 
-			if (k < solArrayLength){
-				print();
-			}
-		}, 1000);
-	};
-	print();
 	
+	if(solution.length == 0){
+		alert("No Solution Found!");
+	}else{
 		
-	/*
+		//document.getElementById('printBtn').disabled = true;
 
-	var buff="<table id='exerTable'>";
-	for(var i=0; i<1;i++){
-		buff+="<tr>";
-		for(var j=0;j<25;j++)
-			buff+="<td id='exerTable'>("+solution[j].id+")</td>";
-		buff+="</tr>";
+		/*var sol = document.getElementById('SolutionList');
+		var opt = document.createElement('option');
+		for(var i = 0; i < solutionArray.length; i++) {
+			var opt = document.createElement('option');
+			opt.innerHTML = "Solution" + i;
+			opt.data-value = solutionArray[i];
+			sol.appendChild(opt);
+		}
+		console.log(solutionArray[0]);
+		var e = document.getElementById("SolutionList");
+		var solution = e.options[e.selectedIndex].value;	
+		console.log(solution);
+    	//var strSel = e.options[e.selectedIndex].value;
+    	//alert(strSel);*/
+		
+
+		//var solution = sol.options[sol.selectedIndex].value;
+		//console.log(solution[0].id);
+		//var N=5;
+		var id=1;
+		var buff="<table id='board' border='2'>";
+		var i=0;
+		for(var y=dimension; y>0;y--){
+			buff+="<tr id="+i+">";
+			
+			for(var j=0;j<dimension;j++){
+				if((y+j)%2==0){
+					buff+="<td style='background-color:white;'></td>";
+					id++;
+				}else{
+					buff+="<td style='background-color:black;'></td>";
+					id++;
+				}
+			}
+			i++;
+			buff+="</tr>";
+		}
+		buff+="</tr></table>";
+		stage.innerHTML=(buff);
+
+		document.getElementById('board').style.width = '400px';
+		document.getElementById('board').style.height = '400px';
+		document.getElementById('board').style.tableLayout="fixed";
+		solArrayLength = solution.length;
+
+		/*var img = document.createElement('img');
+    	img.src = "knight.jpg";
+    	img.style.width = '50px';
+    	img.style.height = '50px';
+    	*/
+		var k=0;
+		function print() {
+		setTimeout(function() {
+				var id = solution[k].id;
+				var row = parseInt((id-1)/dimension);
+				var Row = document.getElementById(row);	
+
+				var Cells = Row.getElementsByTagName("td");
+				var column = (parseInt(id-1)%dimension);
+				//Cells[column].style.overflow = 'auto';
+				Cells[column].style.backgroundColor = "Red";
+				//Cells[column].appendChild(img)
+				k++; 
+				if (k < solArrayLength){
+					print();
+				}
+			}, 1500);
+		};
+		print();
 	}
-	buff+="</tr></table>";
-	stage.innerHTML=(buff);
-
-	//console.log(solution[0][5].id);
-	//console.log("hello");
-	*/
+		
+	
 }
 

@@ -93,7 +93,7 @@
 		);
 
 	$solution = array($tile1,$tile8,$tile5,$tile14,$tile25,$tile18,$tile21,$tile12,$tile3,$tile10,$tile19,$tile22,$tile11,$tile2,$tile9,$tile20,$tile23,$tile16,$tile7,$tile4,$tile15,$tile24,$tile17,$tile6,$tile13);
-
+	$dimension = 5;
 	//$test = array('red'=>'apple', 'yellow'=>'banana', 'orange'=>'orange', 'peach'=>'peach')
 ?>
 
@@ -130,7 +130,10 @@
 	 <div class="jumbotron">
         
 	      <div class="form-group">
-	        <input type="button" onclick='printSol(<?php echo json_encode($solution) ?>)' value="Print Solution" class="btn btn-primary" />
+	      	<div class="dropdown">
+          		<select id="SolutionList"></select>
+          </div>
+	        <input type="button" onclick='printSol(<?php echo json_encode($solution)?>,<?php echo json_encode($dimension)?>)' value="Print Solution" class="btn btn-primary" />
 	      </div>
           
 
